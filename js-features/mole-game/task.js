@@ -16,7 +16,7 @@ for ( holeIndex = 1; holeIndex < 10; holeIndex++ ) {
             counterDead = 0;
             counterLost = 0;
             dead.textContent = counterDead;
-        } else if (counterLost === 10){
+        } else if (counterLost === 5){
             alert ('Вы проиграли');
             counterDead = 0;
             counterLost = 0;
