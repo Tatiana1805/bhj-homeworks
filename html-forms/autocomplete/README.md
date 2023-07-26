@@ -20,6 +20,7 @@
 
 ```javascript
   getMatches( text ) {
+    let option = document.
     /*
       TODO: этот метод нужно дописать
       text - фраза, которую вводят в поле поиска

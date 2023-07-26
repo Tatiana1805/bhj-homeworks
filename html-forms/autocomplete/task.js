@@ -1,15 +1,15 @@
 class Autocomplete {
   constructor( container ) {
     this.container = container;
-    this.input = container.querySelector( '.autocomplete__input' );
-    this.searchInput = container.querySelector( '.autocomplete__search' );
-    this.list = container.querySelector( '.autocomplete__list' );
-    this.valueContainer = container.querySelector( '.autocomplete__value' );
-    this.valueElement = container.querySelector( '.autocomplete__text-content' );
+    this.input = container.querySelector( '.autocomplete__input' ); //варианты слов
+    this.searchInput = container.querySelector( '.autocomplete__search' );//поиск
+    this.list = container.querySelector( '.autocomplete__list' );//окно при нажатии становится активным
+    this.valueContainer = container.querySelector( '.autocomplete__value' ); 
+    this.valueElement = container.querySelector( '.autocomplete__text-content' ); //текст в поиске
 
     this.registerEvents();
   }
-
+//обработать событие щелчка на элементе
   registerEvents() {
     this.valueContainer.addEventListener( 'click', e => {
       this.searchInput.classList.add( 'autocomplete__search_active' );
@@ -20,7 +20,7 @@ class Autocomplete {
       this.onSearch();
     });
 
-
+//слушателя событий для ввода поиска и списка элементов автозаполнения
     this.searchInput.addEventListener( 'input', e => this.onSearch());
 
     this.list.addEventListener( 'click', e => {
@@ -39,7 +39,7 @@ class Autocomplete {
       });
     });
   }
-
+// замена слова на новое
   onSelect( item ) {
     this.input.selectedIndex = item.index;
     this.valueElement.textContent = item.text;
@@ -47,13 +47,13 @@ class Autocomplete {
     this.searchInput.classList.remove( 'autocomplete__search_active' );
     this.list.classList.remove( 'autocomplete__list_active' );
   }
-
+// отображение совпадений
   onSearch() {
     const matches = this.getMatches( this.searchInput.value );
 
     this.renderMatches( matches );
   }
-
+//массив совпадений и отображает их на странице в виде HTML-элементов.
   renderMatches( matches ) {
     const html = matches.map( item => `
     	<li>
@@ -68,26 +68,20 @@ class Autocomplete {
   }
 
   getMatches( text ) {
-    /*
-      TODO: этот метод нужно дописать
-      text - фраза, которую вводят в поле поиска
-      Метод должен вернуть массив.
-
-      Он формируется на основе списка опций select-элемента (this.input)
-      Подходящие опции - те, чей текст содержит то, что есть в аргументе text
-      Необходимо вернуть массив объектов со свойствами:
-      {
-        text: 'Содержимое <option>',
-        value: 'Содержимое атрибута value'
+    const option = Array.from(this.input.options);
+    const arr = [];
+    option.forEach(elem => {
+      if(elem.text.toLowerCase().includes(text.toLowerCase())){
+        arr.push({
+          text: elem.text,
+          value: elem.value
+        })
       }
-    */
-    return [
-      {
-        text: 'Чубакка',
-        value: '1'
-      }
-    ];
+    })
+    return arr;
   }
 }
 
 new Autocomplete( document.querySelector( '.autocomplete' ));
+
+
