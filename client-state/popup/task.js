@@ -1,24 +1,17 @@
-let element = document.getElementById('subscribe-modal');
-    element.classList.add('modal_active'); //активируем модальное окно при загрузке страницы
-
-let modalClose = document.querySelectorAll('.modal__close');
-for (let e of modalClose){
-    e.addEventListener('click',() => {
-        e.closest('.modal').classList.remove('modal_active') //деактивируем модальное окно при клике на крестик
-        document.cookie = "modal__close=yes; path=/ expires=";
-        setCookie()
-    })
+let modal = document.getElementById('subscribe-modal');
+modal.classList.add('modal_active');
+let modalClose = document.querySelector('.modal__close');
+window.onload = function() {
+  if (document.cookie.indexOf("name") == 0) {
+    modal.classList.remove('modal_active')
+  }
+  modalClose.addEventListener('click', event => {
+    event.preventDefault();
+    let target = event.target;
+    target.closest('.modal').classList.remove('modal_active');
+    let today = new Date();
+    let tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+    let dayTomorrow = tomorrow;
+    document.cookie = name=close; ${dayTomorrow};
+  })
 }
-function setCookie() {
-    let date = new Date(Date.now() + 86400000); //Кука на 1 день
-    date = date.toUTCString();
-    document.cookie =  'name=close; expires=' + date;
-    // getCookie()
-};
-
-function getCookie(name) {
-    const cookies = document.cookie.split('; ');
-    const cookie = cookies.find((c) => c.startsWith(name + '='));
-    return cookie ? cookie.substring((name + '=' ).length) : null;
-};
-
