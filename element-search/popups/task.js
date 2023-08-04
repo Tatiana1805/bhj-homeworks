@@ -13,3 +13,4 @@ for (let e of modalClose){
         e.closest('.modal').classList.remove('modal_active') //деактивируем модальное окно при клике на крестик
     })
 }
+

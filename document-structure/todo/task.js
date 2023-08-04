@@ -23,3 +23,4 @@ tasksAddButton.addEventListener('click', (e) => {
 		taskRemoveButtonParent.remove();
 	})
 });
+

@@ -4,6 +4,7 @@ class Game {
     this.wordElement = container.querySelector('.word');
     this.winsElement = container.querySelector('.status__wins');
     this.lossElement = container.querySelector('.status__loss');
+    this.timer = container.querySelector('.timer');
 
     this.reset();
 
@@ -13,7 +14,7 @@ class Game {
   reset() {
     this.setNewWord();
     this.winsElement.textContent = 0;
-    this.lossElement.textContent = 0;
+    this.lossElement.textContent = 0;    
   }
 
   registerEvents() {
@@ -53,9 +54,31 @@ class Game {
   }
 
   setNewWord() {
-    const word = this.getWord();
-
+    clearInterval(this.intervalId);
+    const word = this.getWord(); 
     this.renderWord(word);
+    this.timer.textContent = word.length;
+    this.intervalId = setInterval(() => {
+      this.timer.textContent -= 1;
+
+      if (+this.timer.textContent === 0){
+          this.fail();
+    };
+    }, 1000);
+ 
+
+
+  // const word = this.getWord();
+  // this.renderWord(word);
+  // clearInterval(this.intervalId);
+  // this.timer.textContent = word.length;
+  // this.intervalId =  setInterval(() => {
+  //   this.timer.textContent -= 1;
+
+  //   if (+this.timer.textContent === 0){
+  //       this.fail();
+  // };
+  // }, 1000);
   }
 
   getWord() {

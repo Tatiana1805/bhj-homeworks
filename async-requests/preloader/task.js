@@ -1,8 +1,7 @@
 let items = document.getElementById('items');
 let img = document.querySelector('.loader')
 let xhr = new XMLHttpRequest();
-xhr.addEventListener('readystatechange', () => {
-    if (xhr.readyState === xhr.DONE) {
+xhr.addEventListener('load', () => {
         img.classList.remove('loader_active');
         let xhrAnswer = JSON.parse(xhr.responseText);
         let valute = xhrAnswer.response.Valute;
@@ -21,7 +20,6 @@ xhr.addEventListener('readystatechange', () => {
                 `);
                 
             }
-    }
 })
 xhr.open('GET','https://students.netoservices.ru/nestjs-backend/slow-get-courses')
 xhr.send()

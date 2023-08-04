@@ -13,7 +13,7 @@ clickNext.addEventListener('click', showNextSlide);
 function showPreviousSlide() {
   sliderLine[slideIndex].classList.remove('slider__item_active')
   slideIndex = (slideIndex - 1 + slideCount) % slideCount;
-  sliderLine[slideIndex].classList.add('slider__item_active')
+  //sliderLine[slideIndex].classList.add('slider__item_active')
 }
 
 // Функция для показа следующего слайда

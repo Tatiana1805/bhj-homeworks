@@ -31,9 +31,17 @@ addProduct.forEach(el => {
       `
     } else {
       let a = checkId.querySelector('.cart__product-count').innerHTML;
-      let sum = Number(a) + Number(count);
+      let sum = Number(a) + Number(count)
       checkId.querySelector('.cart__product-count').innerHTML = sum
     }
-    parentTarget.querySelector('.product__quantity-value').textContent = 1
+    // else {
+    //   let a = checkId.querySelector('.cart__product-count').innerHTML;
+    //   let sum = Number(a) + Number(count);
+    //   checkId.querySelector('.cart__product-count').innerHTML = sum
+    // }
+    // parentTarget.querySelector('.product__quantity-value').textContent = 1
   }
 })
+
+
+
